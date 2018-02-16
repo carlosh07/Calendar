@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>CSCI 4300 Calendar</title>
-    <meta name="author" content="Carlos Alberto Hernandez">
+    <meta name="author" content="Carlos Albeto Hernandez">
     <meta name="description" content="Contains the Calendar for the first individual assignment">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -111,7 +111,6 @@
         	var idGen = events.length;
         	localStorage.setItem("length",events.length);
         
-        
         	/*
         	 * This is an event object 
         	 * It has a day, time, title, details, displayTitle and event identifier
@@ -131,28 +130,19 @@
         				this.displayTitle = this.displayTitle.substring(0,11) + "...";
         		}
         
-        
-        
-        
         	/*
         	 * This method populates the calendar with events that are inputted
         	 * I add an event listener to each event that will display the full details
         	 */
          	function addEvent(anEvent, isNewEvent){
-         		//We get the last child for now...
-         		var whereWeAdd = document.getElementById(anEvent.day).lastElementChild;
-         		//We create the li where the event will go
-         		var eventItem = document.createElement("li");
+         		var whereWeAdd = document.getElementById(anEvent.day).lastElementChild; //We get the last child for now...
+         		var eventItem = document.createElement("li");	//We create the li where the event will go
          		eventItem.id = anEvent.eventId;
-        	 	// Create a text item node for our li node
-         		eventItem.appendChild(document.createTextNode(anEvent.displayTitle));
-         		// Add that li node to our UL node
-         		whereWeAdd.appendChild(eventItem);
+        	 	eventItem.appendChild(document.createTextNode(anEvent.displayTitle)); // Create a text item node for our li node
+         		whereWeAdd.appendChild(eventItem); // Add that li node to our UL node
         		eventItem.addEventListener("click", function displayExtEvent () {
-        				//Get the Element in which we will display the event
-        	 		var extendedEventNode = document.getElementById("descriptionBox");
+        	 		var extendedEventNode = document.getElementById("descriptionBox"); //Get the Element in which we will display the event
         		 	extendedEventNode.innerHTML = "";
-        	 		// extendedEventNode.removeChild(document.getElementById("description"));
         	 		var titleLine = document.createElement("p");
         	 		titleLine.appendChild(document.createTextNode(anEvent.title));
         	 		var dateLine = document.createElement("p");
@@ -202,7 +192,6 @@
         		//then we will remove it from the array 
         	}
         
-        	
         	/*
         	 * This method clears the input on our form
         	 */
@@ -224,14 +213,13 @@
         		dayToHighlight.style.font = "30px"; 
          	}
         
-        
          	/*
          	 * This method is going to get the input from our form
          	 */
          	function getEventInput(){
         		var eventForm = document.getElementById("eventForm");
          		//create the Event and push to array
-          		var theNewEvent = new Event(eventForm.eventDate.value, eventForm.eventTime.value, eventForm.eventTitle.value, eventForm.details.value); 		
+          		var theNewEvent = new Event(eventForm.eventDate.value, eventForm.eventTime.value, eventForm.eventTitle.value, eventForm.details.value);
          		events.push(theNewEvent);
          		localStorage.setItem(theNewEvent.eventId, JSON.stringify(theNewEvent));
         		localStorage.setItem("length",events.length);
@@ -410,7 +398,7 @@
 
     <script>
         highlightCurrentDay();
-        		addStoredEvents();
+        addStoredEvents();
     </script>
 
 </body>
